@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { updateUser } from '../../redux/actions/user-action';
@@ -7,13 +8,19 @@ import UtilButton from '../Util-components/Util-button';
 
 import '../scss/Sign.style.scss';
 
-const EditUserPage = ({ userState: { user, token }, updateUser }) => {
-  const INITIAL_DATA = {
-    name: user.name,
-    email: user.email,
-  };
+const INITIAL_DATA = {
+  name: '',
+  email: '',
+};
+
+const EditUserPage = ({ userState: { user, token, isAuth }, updateUser }) => {
   const [formData, setFormData] = useState(INITIAL_DATA);
   const { name, email } = formData;
+
+  useEffect(() => {
+    const form = { name: user.name, email: user.email };
+    setFormData({ ...form });
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,9 +29,10 @@ const EditUserPage = ({ userState: { user, token }, updateUser }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     updateUser({ token, name, email });
   };
+
+  if (!isAuth) return <Redirect to='/' />;
 
   return (
     <Fragment>

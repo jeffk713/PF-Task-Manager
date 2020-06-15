@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import moment from 'moment';
 
 import { updateTask } from '../../redux/actions/task-action';
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
   _id: '',
 };
 
-const EditTaskPage = ({ match, token, tasks, updateTask }) => {
+const EditTaskPage = ({ match, isAuth, token, tasks, updateTask }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { date, title, detail, completed, _id } = formData;
 
@@ -35,6 +35,8 @@ const EditTaskPage = ({ match, token, tasks, updateTask }) => {
     event.preventDefault();
     updateTask({ token, date, title, detail, completed, _id });
   };
+
+  if (!isAuth) return <Redirect to='/' />;
 
   return (
     <div className='add-task'>
@@ -100,6 +102,7 @@ const EditTaskPage = ({ match, token, tasks, updateTask }) => {
 };
 
 const mapStateToProps = (state) => ({
+  isAuth: state.userReducer.isAuth,
   token: state.userReducer.token,
   tasks: state.taskReducer.tasks,
 });

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
@@ -15,7 +16,7 @@ const INITIAL_STATE = {
   completed: false,
 };
 
-const AddTaskPage = ({ createTask, token }) => {
+const AddTaskPage = ({ createTask, token, isAuth }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { date, title, detail, completed } = formData;
 
@@ -29,6 +30,8 @@ const AddTaskPage = ({ createTask, token }) => {
 
     createTask({ token, date, title, detail, completed });
   };
+
+  if (!isAuth) return <Redirect to='/' />;
 
   return (
     <div className='add-task'>
@@ -94,6 +97,7 @@ const AddTaskPage = ({ createTask, token }) => {
 
 const mapStateToProps = (state) => ({
   token: state.userReducer.token,
+  isAuth: state.userReducer.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({

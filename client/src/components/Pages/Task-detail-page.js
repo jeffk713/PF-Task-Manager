@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
 
@@ -15,13 +15,15 @@ const INITIAl_STATE = {
   _id: '',
 };
 
-const TaskDetailPage = ({ history, match, tasks, token, deleteTask }) => {
+const TaskDetailPage = ({ history, match, tasks, token, isAuth, deleteTask }) => {
   const [taskData, setTaskData] = useState(INITIAl_STATE);
   const { date, title, detail, completed, _id } = taskData;
   useEffect(() => {
     const task = tasks.find((task) => task._id === match.params.task_id);
     setTaskData({ ...task });
   }, []);
+
+  if (!isAuth) return <Redirect to='/' />;
 
   return (
     <Fragment>
@@ -62,6 +64,7 @@ const TaskDetailPage = ({ history, match, tasks, token, deleteTask }) => {
 const mapStateToProps = (state) => ({
   tasks: state.taskReducer.tasks,
   token: state.userReducer.token,
+  isAuth: state.userReducer.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
