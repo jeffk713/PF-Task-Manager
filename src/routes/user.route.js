@@ -49,7 +49,10 @@ router.post(
 // @access        Public
 router.post(
   '/signin',
-  [check('email', 'Please enter a valid email').isEmail(), check('password', 'Please enter a password').exists()],
+  [
+    check('email', 'Please enter a valid email').isEmail(),
+    check('password', 'Please enter a password').exists(),
+  ],
   async (req, res) => {
     const { email, password } = req.body;
 
@@ -77,7 +80,7 @@ router.post(
 // @access        Private
 router.get('/', auth, async (req, res) => {
   try {
-    const user = await User.findById({ _id: req.user.id });
+    const user = await User.findById({ _id: req.user.id }).select('-password');
     if (!user) return res.status(400).json({ error: [{ msg: 'User not found' }] });
 
     res.json(user);
@@ -92,7 +95,7 @@ router.get('/', auth, async (req, res) => {
 // @access        Private
 router.patch('/', auth, async (req, res) => {
   try {
-    const user = await User.findById({ _id: req.user.id });
+    const user = await User.findById({ _id: req.user.id }).select('-password');
     if (!user) return res.status(400).json({ error: [{ msg: 'User not found' }] });
 
     for (const key in user) {
@@ -112,7 +115,7 @@ router.patch('/', auth, async (req, res) => {
 // @access        Private
 router.delete('/', auth, async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user.id });
+    const user = await User.findOne({ _id: req.user.id }).select('-password');
     if (!user) return res.status(400).json({ error: [{ msg: 'User not found' }] });
 
     await user.remove();

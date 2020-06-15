@@ -1,0 +1,91 @@
+$main-color: #17a2b8;
+$main-active-color: #17a3b8c2;
+$light-color: #ccc;
+$light-active-color: rgba(204, 204, 204, 0.568);
+$warning-color: #dc3545;
+$warning-active-color: #dc3546a8;
+$success-color: #28a745;
+$basic-color: #333;
+
+.btn {
+  text-align: center;
+  border: 1px solid $basic-color;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3;
+  padding: 0 0.3rem;
+}
+
+.bg-main {
+  background-color: $main-color;
+  &:active {
+    background-color: $main-active-color;
+  }
+}
+
+.bg-light {
+  background-color: $light-color;
+  &:active {
+    background-color: $light-active-color;
+  }
+}
+
+.bg-warning {
+  background-color: $warning-color;
+  &:active {
+    background-color: $warning-active-color;
+  }
+}
+
+.btn-sm {
+  font-size: 0.9rem;
+}
+
+.btn-lg {
+  width: 70%;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.util-btn {
+  width: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.form-group {
+  width: 80%;
+  margin: 0.5rem auto;
+
+  .form-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  .form-input-checkbox {
+    width: 10%;
+    display: inline-block;
+  }
+}
+.form-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//UTIL PAGE
+.util {
+  margin: 1rem auto;
+  .util-header {
+    .util-header-icon {
+      font-size: 4rem;
+    }
+
+    .subtitle {
+      display: flex;
+
+      p {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

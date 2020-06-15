@@ -31,8 +31,10 @@ router.get('/', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user.id });
     if (!user) return res.status(400).json({ error: [{ msg: 'User not found' }] });
     const tasks = await Task.find(
-      req.query.done === undefined ? { owner: req.user.id } : { owner: req.user.id, done: `${req.query.done}` }
-    ).sort({ updatedAt: -1 });
+      req.query.completed === undefined
+        ? { owner: req.user.id }
+        : { owner: req.user.id, completed: `${req.query.completed}` }
+    ).sort({ date: -1 });
 
     res.json(tasks);
   } catch (err) {
@@ -89,6 +91,8 @@ router.delete('/:task_id', auth, async (req, res) => {
     if (!task) return res.status(400).json({ error: [{ msg: 'Task not found' }] });
     const isMatch = req.user.id === task.owner.toString();
     if (!isMatch) return res.status(400).json({ error: [{ msg: 'User not authorized' }] });
+
+    await task.remove();
 
     res.json({ task, msg: 'Task deleted' });
   } catch (err) {

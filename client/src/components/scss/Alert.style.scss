@@ -1,0 +1,17 @@
+@import 'utilities';
+
+.alert {
+  width: 80%;
+  padding: 0.5rem 2rem;
+  margin: 0.5rem auto;
+  border-radius: 5px;
+}
+.alert-red {
+  background-color: $warning-color;
+  color: #fff;
+}
+
+.alert-green {
+  background-color: $success-color;
+  color: $basic-color;
+}

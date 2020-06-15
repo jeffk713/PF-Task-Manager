@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function App() {
+import Navbar from './components/Navbar/Navbar';
+import Alert from './components/Alert/Alert';
+import PageContainer from './components/Pages/Page-container';
+
+import HomePage from './components/Pages/Home-page';
+import TaskPage from './components/Pages/Tasks-page';
+import AddTaskPage from './components/Pages/Add-task-page';
+import EditTaskPage from './components/Pages/Edit-task-page';
+import TaskDetailPage from './components/Pages/Task-detail-page';
+import UserPage from './components/Pages/User-page';
+import EditUserPage from './components/Pages/Edit-user-page';
+import SignPage from './components/Pages/Sign-page';
+
+import { getUser } from './redux/actions/user-action';
+import setupToken from './utilities/setup-token';
+
+import './App.scss';
+if (localStorage.token) setupToken(localStorage.token);
+
+const App = ({ getUser }) => {
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Navbar />
+      <PageContainer>
+        <Alert />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/tasks' component={TaskPage} />
+          <Route exact path='/task-add' component={AddTaskPage} />
+          <Route exact path='/tasks/:task_id' component={TaskDetailPage} />
+          <Route exact path='/task-edit/:task_id' component={EditTaskPage} />
+          <Route exact path='/userinfo' component={UserPage} />
+          <Route exact path='/userinfo-edit' component={EditUserPage} />
+          <Route exact path='/sign' component={SignPage} />
+        </Switch>
+      </PageContainer>
+    </Fragment>
   );
-}
+};
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  getUser: () => dispatch(getUser()),
+});
+
+export default connect(null, mapDispatchToProps)(App);

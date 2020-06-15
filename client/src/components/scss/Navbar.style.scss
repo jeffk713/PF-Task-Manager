@@ -1,0 +1,30 @@
+@import 'utilities';
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 1rem 2rem;
+
+  background-color: $main-color;
+  border-bottom: 1px solid #000;
+
+  .navbar-group {
+    display: flex;
+
+    h1 {
+      font-size: 2rem;
+    }
+    .navbar-link {
+      text-decoration: none;
+      color: $basic-color;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+    .sm {
+      font-size: 1.2rem;
+    }
+  }
+}

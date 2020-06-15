@@ -1,0 +1,109 @@
+@import 'utilities';
+
+//PAGE CONTAINER
+.page-container {
+  width: 800px;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+//HOME PAGE
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+
+  .home-btn-container {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+//TASKS PAGE
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .tasks-header-sort {
+    display: flex;
+    p {
+      margin-right: 1rem;
+    }
+  }
+}
+
+//ADD TASK PAGE
+.add-task-body {
+  margin: 1rem auto;
+}
+
+.to-detail {
+  cursor: pointer;
+}
+
+//USER & TASK DETAIL PAGE
+.user-body,
+.detail-body {
+  margin: 2rem auto;
+  .user-body-table {
+    display: flex;
+    flex-direction: column;
+
+    & > div:last-child {
+      div {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .user-body-table-group,
+    .detail-body-table-group {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .user-btn-group {
+      display: flex;
+      flex-direction: row-reverse;
+      margin-bottom: -0.5rem;
+    }
+  }
+}
+
+// TASK DETAIL PAGE
+.detail-body-table {
+  width: 55%;
+  min-width: 300px;
+  margin: 0 auto;
+
+  .detail-body-table-group {
+    width: 100%;
+  }
+}
+
+.detail-btn-group {
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    display: flex;
+  }
+}
+
+//SIGN PAGE
+.sign-body {
+  width: 100%;
+  display: flex;
+}
+
+//EDIT USER PAGE
+.edit-user-container {
+  margin: 1rem auto;
+
+  .edit-user-btn-group {
+    margin-bottom: -0.5rem;
+  }
+}
