@@ -17,7 +17,7 @@ const TaskListTable = ({ tasks, sortBy }) => {
     <div className='task-table'>
       <UtilButton purpose='add' pushUrl='/task-add' />
       <div className='task-table-head'>
-        <div>Date</div>
+        <div className='hide-sm'>Date</div>
         <div>Task</div>
         <div>Status</div>
         <div></div>

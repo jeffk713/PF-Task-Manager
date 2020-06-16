@@ -13,7 +13,7 @@
 
     div {
       border: 1px solid #333;
-      padding: 0.3rem;
+      padding: 0.1rem 0.3rem;
       border-radius: 4px;
     }
   }
@@ -25,8 +25,13 @@
   text-align: center;
   padding: 0.3rem;
   border-bottom: 1px solid #333;
+  .hide-lg {
+    display: none;
+  }
 }
 
 .to-delete {
   cursor: pointer;
 }
+
+@import 'mobile';

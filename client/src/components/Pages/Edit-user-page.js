@@ -37,9 +37,12 @@ const EditUserPage = ({ userState: { user, isAuth }, updateUser, getUser, histor
 
   return (
     <Fragment>
-      <div className='sign-header'>
-        <h1>
+      <div className='sign-header edit-user-header'>
+        <h1 className='hide-sm'>
           <i className='fas fa-user-check'></i> EDIT USER INFORMATION
+        </h1>
+        <h1 className='hide-lg'>
+          <i className='fas fa-user-check'></i> EDIT USER INFO
         </h1>
       </div>
       <div className='signup-container edit-user-container'>

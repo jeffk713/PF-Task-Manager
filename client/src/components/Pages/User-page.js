@@ -23,7 +23,7 @@ const UserPage = ({ userState: { user, isAuth }, deleteAllTasks, deleteUser, his
       {isAuth ? (
         <div className='user-body'>
           <div className='user-body-table'>
-            <div className='user-body-table-group user-btn-group'>
+            <div className='user-btn-group'>
               <UtilButton purpose='edit' handleClick={() => history.push('/userinfo-edit')} />
             </div>
             <div className='user-body-table-group'>

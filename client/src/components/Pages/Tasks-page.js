@@ -41,10 +41,16 @@ const TasksPage = ({
         {isAuth && tasks.length > 0 && (
           <div className='tasks-header-sort'>
             <p>Sorted by</p>
-            <select name='sortBy' value={sortBy} onChange={handleChange}>
-              <option value='all'>All</option>
-              <option value='false'>Incompleted</option>
-              <option value='true'>Completed</option>
+            <select className='tasks-sort' name='sortBy' value={sortBy} onChange={handleChange}>
+              <option className='tasks-sort-option' value='all'>
+                All
+              </option>
+              <option className='tasks-sort-option' value='false'>
+                Incompleted
+              </option>
+              <option className='tasks-sort-option' value='true'>
+                Completed
+              </option>
             </select>
           </div>
         )}
