@@ -40,7 +40,13 @@ const TaskDetailPage = ({ history, match, tasks, isAuth, deleteTask }) => {
             </div>
             <div>
               <UtilButton purpose='edit' handleClick={() => history.push(`/task-edit/${_id}`)} />
-              <UtilButton purpose='delete' handleClick={() => deleteTask(_id)} />
+              <UtilButton
+                purpose='delete'
+                handleClick={() => {
+                  deleteTask(_id);
+                  history.push('/tasks');
+                }}
+              />
             </div>
           </div>
           <div className='detail-body-table-group'>

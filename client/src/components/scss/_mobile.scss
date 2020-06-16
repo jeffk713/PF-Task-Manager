@@ -46,6 +46,10 @@
   //   }
   // }
 
+  .task-list {
+    padding: 0.2rem;
+  }
+
   .signin-container,
   .signup-container {
     .signin-form,
@@ -88,6 +92,7 @@
 
   .task-list {
     grid-template-columns: 5fr 1.6fr 1fr;
+    padding: 0.1rem;
     .hide-sm {
       display: none;
     }
