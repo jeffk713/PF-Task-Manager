@@ -1,8 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const UtilButton = ({ history, pushUrl = undefined, purpose, handleClick = undefined }) => {
-  let setup;
+const INITIAL_SETUP = {
+  class: '',
+  icon: '',
+};
+
+const UtilButton = ({ history, purpose, pushUrl = undefined, handleClick = undefined }) => {
+  let setup = INITIAL_SETUP;
   let onClick;
   if (purpose === 'add') {
     setup = {

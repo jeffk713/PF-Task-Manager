@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import TaskList from './Task-list';
-import UtilPage from '../Pages/Util-page';
+import UtilPage from '../Util-components/Util-page';
 import UtilButton from '../Util-components/Util-button';
 
 import '../scss/Task-list.style.scss';

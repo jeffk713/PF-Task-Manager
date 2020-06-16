@@ -5,8 +5,8 @@ import { TASK } from './action-types';
 
 import { setAlert } from './alert-action';
 
-export const getTasks = (token, sortBy = undefined) => async (dispatch) => {
-  setupToken(token);
+export const getTasks = (sortBy = undefined) => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   let urlToGetTasks;
   try {
     if (sortBy === 'true' || 'false') urlToGetTasks = `/task?completed=${sortBy}`;
@@ -28,8 +28,8 @@ export const getTasks = (token, sortBy = undefined) => async (dispatch) => {
   }
 };
 
-export const createTask = ({ token, date, title, detail, completed }) => async (dispatch) => {
-  setupToken(token);
+export const createTask = ({ date, title, detail, completed }) => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const createTask = ({ token, date, title, detail, completed }) => async (
 
     dispatch({ type: TASK.CREATE_TASK_SUCCESS });
 
-    dispatch(getTasks(token));
+    dispatch(getTasks());
     dispatch(setAlert('Task has been added', 'green'));
   } catch (err) {
     const error = err.response.data.error;
@@ -55,8 +55,8 @@ export const createTask = ({ token, date, title, detail, completed }) => async (
   }
 };
 
-export const updateTask = ({ token, date, title, detail, completed, _id }) => async (dispatch) => {
-  setupToken(token);
+export const updateTask = ({ date, title, detail, completed, _id }) => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const updateTask = ({ token, date, title, detail, completed, _id }) => as
 
     dispatch({ type: TASK.CREATE_TASK_SUCCESS });
 
-    dispatch(getTasks(token));
+    dispatch(getTasks());
     dispatch(setAlert('Task has been updated', 'green'));
   } catch (err) {
     const error = err.response.data.error;
@@ -81,14 +81,14 @@ export const updateTask = ({ token, date, title, detail, completed, _id }) => as
   }
 };
 
-export const deleteTask = ({ token, _id }) => async (dispatch) => {
-  setupToken(token);
+export const deleteTask = (_id) => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   try {
     await axios.delete(`/task/${_id}`);
 
     dispatch({ type: TASK.DELETE_TASK_SUCCESS });
 
-    dispatch(getTasks(token));
+    dispatch(getTasks());
     dispatch(setAlert('Task has been deleted', 'green'));
   } catch (err) {
     const error = err.response.data.error;
@@ -101,14 +101,14 @@ export const deleteTask = ({ token, _id }) => async (dispatch) => {
   }
 };
 
-export const deleteAllTasks = (token) => async (dispatch) => {
-  setupToken(token);
+export const deleteAllTasks = () => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   try {
     await axios.delete('/task');
 
     dispatch({ type: TASK.DELETE_TASK_SUCCESS });
 
-    dispatch(getTasks(token));
+    dispatch(getTasks());
     dispatch(setAlert('All tasks have been deleted', 'green'));
   } catch (err) {
     const error = err.response.data.error;

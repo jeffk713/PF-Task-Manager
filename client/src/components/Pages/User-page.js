@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Moment from 'react-moment';
 
-import UtilPage from './Util-page';
+import UtilPage from '../Util-components/Util-page';
 import UtilButton from '../Util-components/Util-button';
 
 import { deleteAllTasks } from '../../redux/actions/task-action';
@@ -11,7 +11,7 @@ import { deleteUser } from '../../redux/actions/user-action';
 
 import '../scss/Pages.style.scss';
 
-const UserPage = ({ userState: { user, isAuth, token }, deleteAllTasks, deleteUser, history }) => {
+const UserPage = ({ userState: { user, isAuth }, deleteAllTasks, deleteUser, history }) => {
   return (
     <Fragment>
       <div className='user-header'>
@@ -41,10 +41,10 @@ const UserPage = ({ userState: { user, isAuth, token }, deleteAllTasks, deleteUs
               <Moment format='MM/DD/YYYY'>{user.createdAt.toString()}</Moment>
             </div>
             <div className='user-body-table-group'>
-              <div className='btn btn-lg bg-warning' onClick={() => deleteAllTasks(token)}>
+              <div className='btn btn-lg bg-warning' onClick={() => deleteAllTasks()}>
                 Delete All Tasks
               </div>
-              <div className='btn btn-lg bg-warning' onClick={() => deleteUser(token)}>
+              <div className='btn btn-lg bg-warning' onClick={() => deleteUser()}>
                 Delete User
               </div>
             </div>
@@ -62,8 +62,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteAllTasks: (token) => dispatch(deleteAllTasks(token)),
-  deleteUser: (token) => dispatch(deleteUser(token)),
+  deleteAllTasks: () => dispatch(deleteAllTasks()),
+  deleteUser: () => dispatch(deleteUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserPage));

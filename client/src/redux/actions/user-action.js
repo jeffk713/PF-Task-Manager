@@ -77,8 +77,8 @@ export const signUp = ({ name, email, password }) => async (dispatch) => {
   }
 };
 
-export const updateUser = ({ token, name, email }) => async (dispatch) => {
-  setupToken(token);
+export const updateUser = ({ name, email }) => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -102,8 +102,8 @@ export const updateUser = ({ token, name, email }) => async (dispatch) => {
   }
 };
 
-export const deleteUser = (token) => async (dispatch) => {
-  setupToken(token);
+export const deleteUser = () => async (dispatch) => {
+  if (localStorage.token) setupToken(localStorage.token);
   try {
     await axios.delete('/user');
     dispatch({

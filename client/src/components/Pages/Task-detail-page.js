@@ -15,7 +15,7 @@ const INITIAl_STATE = {
   _id: '',
 };
 
-const TaskDetailPage = ({ history, match, tasks, token, isAuth, deleteTask }) => {
+const TaskDetailPage = ({ history, match, tasks, isAuth, deleteTask }) => {
   const [taskData, setTaskData] = useState(INITIAl_STATE);
   const { date, title, detail, completed, _id } = taskData;
   useEffect(() => {
@@ -40,7 +40,7 @@ const TaskDetailPage = ({ history, match, tasks, token, isAuth, deleteTask }) =>
             </div>
             <div>
               <UtilButton purpose='edit' handleClick={() => history.push(`/task-edit/${_id}`)} />
-              <UtilButton purpose='delete' handleClick={() => deleteTask({ token, _id })} />
+              <UtilButton purpose='delete' handleClick={() => deleteTask(_id)} />
             </div>
           </div>
           <div className='detail-body-table-group'>
@@ -63,12 +63,11 @@ const TaskDetailPage = ({ history, match, tasks, token, isAuth, deleteTask }) =>
 
 const mapStateToProps = (state) => ({
   tasks: state.taskReducer.tasks,
-  token: state.userReducer.token,
   isAuth: state.userReducer.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteTask: ({ token, _id }) => dispatch(deleteTask({ token, _id })),
+  deleteTask: (_id) => dispatch(deleteTask(_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TaskDetailPage));

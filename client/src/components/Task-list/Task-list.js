@@ -8,7 +8,7 @@ import { deleteTask } from '../../redux/actions/task-action';
 
 import '../scss/Task-list.style.scss';
 
-const TaskList = ({ token, _id, date, title, completed, history, match, deleteTask }) => {
+const TaskList = ({ _id, date, title, completed, history, match, deleteTask }) => {
   return (
     <div className='task-list'>
       <div>
@@ -20,19 +20,15 @@ const TaskList = ({ token, _id, date, title, completed, history, match, deleteTa
       <div>{completed ? 'completed' : 'incompleted'}</div>
       <div>
         <div>
-          <i className='fas fa-backspace to-delete' onClick={() => deleteTask({ token, _id })}></i>
+          <i className='fas fa-backspace to-delete' onClick={() => deleteTask(_id)}></i>
         </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  token: state.userReducer.token,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   deleteTask: ({ token, _id }) => dispatch(deleteTask({ token, _id })),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TaskList));
+export default connect(null, mapDispatchToProps)(withRouter(TaskList));

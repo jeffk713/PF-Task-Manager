@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { updateUser } from '../../redux/actions/user-action';
+import { updateUser, getUser } from '../../redux/actions/user-action';
 
 import UtilButton from '../Util-components/Util-button';
 
@@ -13,7 +13,7 @@ const INITIAL_DATA = {
   email: '',
 };
 
-const EditUserPage = ({ userState: { user, token, isAuth }, updateUser }) => {
+const EditUserPage = ({ userState: { user, isAuth }, updateUser, getUser, history }) => {
   const [formData, setFormData] = useState(INITIAL_DATA);
   const { name, email } = formData;
 
@@ -29,7 +29,8 @@ const EditUserPage = ({ userState: { user, token, isAuth }, updateUser }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateUser({ token, name, email });
+    updateUser({ name, email });
+    history.push('/userinfo');
   };
 
   if (!isAuth) return <Redirect to='/' />;
@@ -84,7 +85,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateUser: ({ token, name, email }) => dispatch(updateUser({ token, name, email })),
+  updateUser: ({ name, email }) => dispatch(updateUser({ name, email })),
+  getUser: () => dispatch(getUser()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditUserPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditUserPage));

@@ -10,20 +10,20 @@ import UtilButton from '../Util-components/Util-button';
 import '../scss/Pages.style.scss';
 
 const INITIAL_STATE = {
-  date: moment().format('YYYY-MM-DD'),
+  date: moment.utc().format('YYYY-MM-DD'),
   title: '',
   detail: '',
   completed: false,
   _id: '',
 };
 
-const EditTaskPage = ({ match, isAuth, token, tasks, updateTask }) => {
+const EditTaskPage = ({ match, isAuth, tasks, updateTask, history }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { date, title, detail, completed, _id } = formData;
 
   useEffect(() => {
     const task = tasks.find((task) => task._id === match.params.task_id);
-    setFormData({ ...task, date: moment().format('YYYY-MM-DD') });
+    setFormData({ ...task, date: moment.utc(task.date).format('YYYY-MM-DD') });
   }, []);
 
   const handleChange = (event) => {
@@ -33,7 +33,8 @@ const EditTaskPage = ({ match, isAuth, token, tasks, updateTask }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateTask({ token, date, title, detail, completed, _id });
+    updateTask({ date, title, detail, completed, _id });
+    history.push('/tasks');
   };
 
   if (!isAuth) return <Redirect to='/' />;
@@ -103,13 +104,12 @@ const EditTaskPage = ({ match, isAuth, token, tasks, updateTask }) => {
 
 const mapStateToProps = (state) => ({
   isAuth: state.userReducer.isAuth,
-  token: state.userReducer.token,
   tasks: state.taskReducer.tasks,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateTask: ({ token, date, title, detail, completed, _id }) =>
-    dispatch(updateTask({ token, date, title, detail, completed, _id })),
+  updateTask: ({ date, title, detail, completed, _id }) =>
+    dispatch(updateTask({ date, title, detail, completed, _id })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditTaskPage));

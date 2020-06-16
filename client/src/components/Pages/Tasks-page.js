@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import TaskListTable from '../Task-list/Task-list-table';
-import UtilPage from './Util-page';
+import UtilPage from '../Util-components/Util-page';
 
 import { getTasks } from '../../redux/actions/task-action';
 
@@ -12,17 +12,17 @@ const INITIAL_STATE = {
   sortBy: 'all',
 };
 
-const TasksPage = ({ userState: { isAuth, token }, getTasks, tasks }) => {
+const TasksPage = ({
+  userState: { isAuth, userLoading },
+  taskState: { tasks, taskLoading },
+  getTasks,
+}) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { sortBy } = formData;
 
   useEffect(() => {
-    getTasks(token);
+    getTasks();
   }, []);
-
-  // useEffect(() => {
-  //   getTasks(token, sortBy);
-  // }, [formData]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,6 +37,7 @@ const TasksPage = ({ userState: { isAuth, token }, getTasks, tasks }) => {
             <i className='fas fa-check'></i> TASKS
           </h1>
         </div>
+        {isAuth && userLoading && <h1>Loading</h1>}
         {isAuth && tasks.length > 0 && (
           <div className='tasks-header-sort'>
             <p>Sorted by</p>
@@ -48,18 +49,18 @@ const TasksPage = ({ userState: { isAuth, token }, getTasks, tasks }) => {
           </div>
         )}
       </div>
-      {!isAuth ? <UtilPage purpose='guest' /> : <TaskListTable sortBy={sortBy} />}
+      {isAuth ? <TaskListTable sortBy={sortBy} /> : <UtilPage purpose='guest' />}
     </Fragment>
   );
 };
 
 const mapStateToProps = (state) => ({
   userState: state.userReducer,
-  tasks: state.taskReducer.tasks,
+  taskState: state.taskReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getTasks: (token, sortBy) => dispatch(getTasks(token, sortBy)),
+  getTasks: () => dispatch(getTasks()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksPage);

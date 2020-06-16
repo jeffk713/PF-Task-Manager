@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import UtilPage from './Util-page';
+import UtilPage from '../Util-components/Util-page';
 
 const HomePage = ({ isAuth }) => {
   console.log(isAuth);

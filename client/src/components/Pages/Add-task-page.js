@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   completed: false,
 };
 
-const AddTaskPage = ({ createTask, token, isAuth }) => {
+const AddTaskPage = ({ createTask, isAuth, history }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { date, title, detail, completed } = formData;
 
@@ -27,8 +27,9 @@ const AddTaskPage = ({ createTask, token, isAuth }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    createTask({ token, date, title, detail, completed });
+    createTask({ date, title, detail, completed });
+    setFormData({ ...INITIAL_STATE });
+    history.push('/tasks');
   };
 
   if (!isAuth) return <Redirect to='/' />;
@@ -96,13 +97,12 @@ const AddTaskPage = ({ createTask, token, isAuth }) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: state.userReducer.token,
   isAuth: state.userReducer.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createTask: ({ token, date, title, detail, completed }) =>
-    dispatch(createTask({ token, date, title, detail, completed })),
+  createTask: ({ date, title, detail, completed }) =>
+    dispatch(createTask({ date, title, detail, completed })),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTaskPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddTaskPage));

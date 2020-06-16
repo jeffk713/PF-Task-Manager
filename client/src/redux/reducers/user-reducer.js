@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   token: localStorage.getItem('token'),
   isAuth: null,
   user: null,
-  loading: true,
+  userLoading: true,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -22,7 +22,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         user: { ...payload },
         isAuth: true,
-        loading: false,
+        userLoading: false,
       };
     case USER.SIGNIN_FAILURE:
     case USER.GET_USER_FAILURE:
@@ -35,7 +35,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         token: null,
         isAuth: false,
         user: null,
-        loading: false,
+        userLoading: false,
       };
     default:
       return { ...state };

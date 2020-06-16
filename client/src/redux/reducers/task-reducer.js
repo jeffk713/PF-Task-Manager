@@ -2,7 +2,7 @@ import { TASK } from '../actions/action-types';
 
 const INITIAL_STATE = {
   tasks: [],
-  loading: true,
+  taskLoading: true,
   error: {},
 };
 
@@ -13,14 +13,14 @@ const taskReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         tasks: payload,
-        loading: false,
+        taskLoading: false,
       };
     case TASK.CREATE_TASK_FAILURE:
     case TASK.GET_TASKS_FAILURE:
     case TASK.DELETE_TASK_FAILURE:
       return {
         ...state,
-        loading: false,
+        taskLoading: false,
         error: payload,
       };
     default:
