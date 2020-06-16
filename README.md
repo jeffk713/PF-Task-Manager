@@ -2,7 +2,7 @@
 Create default.json fiel in config folder with the following
 ```bash
 {
-  "mongoURI": "YOUR_MONGODB_ATLAS",
+  "mongoURI": "YOUR_MONGODB_ATLAS_URI",
   "jwtSecret": "thisissecret"
 }
 ```
