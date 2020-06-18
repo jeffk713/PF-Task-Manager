@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -35,64 +35,59 @@ const AddTaskPage = ({ createTask, isAuth, history }) => {
   if (!isAuth) return <Redirect to='/' />;
 
   return (
-    <div className='add-task'>
-      <div className='add-task-header'>
-        <h1>
-          <i className='fas fa-calendar-plus'></i> ADD A TASK
-        </h1>
-      </div>
-      <div className='add-task-body'>
-        <form className='add-task-form'>
-          <div className='form-group'></div>
-          <div className='form-group'>
-            <UtilButton purpose='back' pushUrl='/tasks' />
-            <input
-              className='form-input'
-              name='date'
-              type='date'
-              value={date}
-              onChange={handleChange}
-            />
+    <Fragment>
+      <h1>
+        <i className='fas fa-calendar-plus'></i> ADD A TASK
+      </h1>
+      <form className='form'>
+        <div className='form-group'>
+          <UtilButton purpose='back' pushUrl='/tasks' />
+          <input
+            className='form-input'
+            name='date'
+            type='date'
+            value={date}
+            onChange={handleChange}
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            className='form-input'
+            name='title'
+            type='text'
+            value={title}
+            onChange={handleChange}
+            placeholder='Title'
+          />
+        </div>
+        <div className='form-group'>
+          <textarea
+            className='form-input'
+            name='detail'
+            type='text'
+            value={detail}
+            onChange={handleChange}
+            placeholder='Detail'
+            rows='4'
+          />
+        </div>
+        <div className='form-group form-check'>
+          <p>Check if already completed</p>
+          <input
+            className='form-input-checkbox'
+            name='completed'
+            type='checkbox'
+            value={completed}
+            onChange={() => setFormData({ ...formData, completed: !completed })}
+          />
+        </div>
+        <div className='form-group'>
+          <div className='btn bg-main btn-lg' onClick={handleSubmit}>
+            ADD TASK
           </div>
-          <div className='form-group'>
-            <input
-              className='form-input'
-              name='title'
-              type='text'
-              value={title}
-              onChange={handleChange}
-              placeholder='Title'
-            />
-          </div>
-          <div className='form-group'>
-            <textarea
-              className='form-input'
-              name='detail'
-              type='text'
-              value={detail}
-              onChange={handleChange}
-              placeholder='Detail'
-              rows='4'
-            />
-          </div>
-          <div className='form-group form-check'>
-            <p>Check if already completed</p>
-            <input
-              className='form-input-checkbox'
-              name='completed'
-              type='checkbox'
-              value={completed}
-              onChange={() => setFormData({ ...formData, completed: !completed })}
-            />
-          </div>
-          <div className='form-group'>
-            <div className='btn bg-main btn-lg' onClick={handleSubmit}>
-              ADD TASK
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </Fragment>
   );
 };
 

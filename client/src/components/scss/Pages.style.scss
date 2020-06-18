@@ -36,11 +36,6 @@
   }
 }
 
-//ADD TASK PAGE
-.add-task-body {
-  margin: 1rem auto;
-}
-
 .to-detail {
   cursor: pointer;
 }
@@ -49,6 +44,7 @@
 .user-body,
 .detail-body {
   margin: 2rem auto;
+
   .user-body-table {
     display: flex;
     flex-direction: column;
@@ -59,8 +55,7 @@
       }
     }
 
-    .user-body-table-group,
-    .detail-body-table-group {
+    .user-body-table-group {
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
     }
@@ -74,29 +69,49 @@
 }
 
 // TASK DETAIL PAGE
-.detail-body-table {
-  width: 55%;
-  min-width: 300px;
-  margin: 0 auto;
+.detail-body {
+  margin: 2rem auto;
 
-  .detail-body-table-group {
-    width: 100%;
+  .detail-body-table {
+    width: 55%;
+    margin: 0 auto;
+
+    .detail-body-table-group {
+      width: 100%;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-btn-group {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      & > div {
+        display: flex;
+      }
+    }
   }
 }
 
-.detail-btn-group {
-  display: flex;
-  justify-content: space-between;
-
-  & > div {
-    display: flex;
-  }
-}
-
-//SIGN PAGE
+//SIGN PAGE & EDIT USER PAGE
 .sign-body {
   width: 100%;
   display: flex;
+}
+
+.signin-container,
+.signup-container,
+.edit-user-container {
+  margin-top: 1rem;
+  padding: 0 1.5rem;
+  width: 50%;
+
+  .signin-title,
+  .signup-title {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 //EDIT USER PAGE

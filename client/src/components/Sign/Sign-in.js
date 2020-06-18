@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import { signIn } from '../../redux/actions/user-action';
 
-import '../scss/Sign.style.scss';
+import '../scss/Pages.style.scss';
 
 const INITIAL_DATA = {
   email: '',
@@ -32,7 +32,7 @@ const SignIn = ({ signIn, isAuth }) => {
       <div className='signin-title'>
         <h2>SIGN IN</h2>
       </div>
-      <form className='signin-form'>
+      <form className='form'>
         <div className='form-group'>
           <input
             className='form-input'

@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { setAlert } from '../../redux/actions/alert-action';
 import { signUp } from '../../redux/actions/user-action';
 
-import '../scss/Sign.style.scss';
+import '../scss/Pages.style.scss';
 
 const INITIAL_DATA = {
   name: '',
@@ -37,7 +37,7 @@ const SignUp = ({ setAlert, signUp, isAuth }) => {
       <div className='signup-title'>
         <h2>SIGN UP</h2>
       </div>
-      <form className='signup-form'>
+      <form className='form'>
         <div className='form-group'>
           <input
             className='form-input'

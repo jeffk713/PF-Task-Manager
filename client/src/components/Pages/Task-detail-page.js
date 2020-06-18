@@ -27,14 +27,12 @@ const TaskDetailPage = ({ history, match, tasks, isAuth, deleteTask }) => {
 
   return (
     <Fragment>
-      <div className='detail-header'>
-        <h1>
-          <i className='fas fa-tasks'></i> TASK DETAIL
-        </h1>
-      </div>
+      <h1>
+        <i className='fas fa-tasks'></i> TASK DETAIL
+      </h1>
       <div className='detail-body'>
         <div className='detail-body-table'>
-          <div className='detail-body-table-group detail-btn-group'>
+          <div className='detail-btn-group'>
             <div>
               <UtilButton purpose='back' pushUrl='/tasks' />
             </div>
@@ -49,6 +47,7 @@ const TaskDetailPage = ({ history, match, tasks, isAuth, deleteTask }) => {
               />
             </div>
           </div>
+          <div className='detail-body-table-group'></div>
           <div className='detail-body-table-group'>
             <strong>Date: </strong> <Moment format='MM/DD/YYYY'>{moment.utc(date)}</Moment>
           </div>

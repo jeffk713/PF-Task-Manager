@@ -6,7 +6,7 @@ import { updateUser, getUser } from '../../redux/actions/user-action';
 
 import UtilButton from '../Util-components/Util-button';
 
-import '../scss/Sign.style.scss';
+import '../scss/Pages.style.scss';
 
 const INITIAL_DATA = {
   name: '',
@@ -37,7 +37,7 @@ const EditUserPage = ({ userState: { user, isAuth }, updateUser, getUser, histor
 
   return (
     <Fragment>
-      <div className='sign-header edit-user-header'>
+      <div className='edit-user-header'>
         <h1 className='hide-sm'>
           <i className='fas fa-user-check'></i> EDIT USER INFORMATION
         </h1>
@@ -45,8 +45,8 @@ const EditUserPage = ({ userState: { user, isAuth }, updateUser, getUser, histor
           <i className='fas fa-user-check'></i> EDIT USER INFO
         </h1>
       </div>
-      <div className='signup-container edit-user-container'>
-        <form className='signup-form'>
+      <div className='edit-user-container'>
+        <form className='form'>
           <div className='form-group edit-user-btn-group'>
             <UtilButton purpose='back' pushUrl='/userinfo' />
           </div>

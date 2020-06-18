@@ -32,25 +32,16 @@ const TasksPage = ({
   return (
     <Fragment>
       <div className='tasks-header'>
-        <div className='tasks-header-title'>
-          <h1>
-            <i className='fas fa-check'></i> TASKS
-          </h1>
-        </div>
-        {isAuth && userLoading && <h1>Loading</h1>}
+        <h1>
+          <i className='fas fa-check'></i> TASKS
+        </h1>
         {isAuth && tasks.length > 0 && (
           <div className='tasks-header-sort'>
             <p>Sorted by</p>
-            <select className='tasks-sort' name='sortBy' value={sortBy} onChange={handleChange}>
-              <option className='tasks-sort-option' value='all'>
-                All
-              </option>
-              <option className='tasks-sort-option' value='false'>
-                Incompleted
-              </option>
-              <option className='tasks-sort-option' value='true'>
-                Completed
-              </option>
+            <select name='sortBy' value={sortBy} onChange={handleChange}>
+              <option value='all'>All</option>
+              <option value='false'>Incompleted</option>
+              <option value='true'>Completed</option>
             </select>
           </div>
         )}

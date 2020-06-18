@@ -51,25 +51,32 @@ $basic-color: #333;
   width: 50px;
   margin-bottom: 0.5rem;
 }
-
-.form-group {
-  width: 80%;
-  margin: 0.5rem auto;
-
-  .form-input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1.2rem;
-  }
-  .form-input-checkbox {
-    width: 10%;
-    display: inline-block;
-  }
-}
-.form-check {
+.form {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin-top: 0.5rem;
+
+  .form-group {
+    width: 80%;
+    margin: 0.5rem auto;
+
+    .form-input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+  .form-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .form-input-checkbox {
+      width: 10%;
+      display: inline-block;
+    }
+  }
 }
 
 //UTIL PAGE

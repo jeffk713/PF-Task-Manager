@@ -8,11 +8,9 @@ import '../scss/Pages.style.scss';
 const SignPage = () => {
   return (
     <Fragment>
-      <div className='sign-header'>
-        <h1>
-          <i className='fas fa-user-check'></i> SIGN IN or SIGN UP
-        </h1>
-      </div>
+      <h1>
+        <i className='fas fa-user-check'></i> SIGN IN or SIGN UP
+      </h1>
       <div className='sign-body'>
         <SignIn />
         <SignUp />

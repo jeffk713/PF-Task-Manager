@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
 import Alert from './components/Alert/Alert';
-import PageContainer from './components/Pages/Page-container';
+import PageContainer from './components/Page-container/Page-container';
 
 import HomePage from './components/Pages/Home-page';
 import TaskPage from './components/Pages/Tasks-page';
