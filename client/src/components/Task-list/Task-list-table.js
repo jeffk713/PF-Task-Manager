@@ -6,7 +6,7 @@ import TaskList from './Task-list';
 import UtilPage from '../Util-components/Util-page';
 import UtilButton from '../Util-components/Util-button';
 
-import '../scss/Task-list.style.scss';
+import '../scss/Task-User-list.style.scss';
 
 const TaskListTable = ({ tasks, sortBy }) => {
   const sortByBoolean = sortBy === 'true';

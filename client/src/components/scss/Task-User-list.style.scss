@@ -1,12 +1,13 @@
 @import 'utilities';
 
-.task-table {
+.task-table,
+.user-table {
   width: 80%;
   margin: 1rem auto;
 
-  .task-table-head {
+  .task-table-head,
+  .user-table-head {
     display: grid;
-    grid-template-columns: 1.5fr 5fr 2fr 0.8fr;
     text-align: center;
     background-color: #f4f4f4;
     border-radius: 4px;
@@ -17,17 +18,34 @@
       border-radius: 4px;
     }
   }
+
+  .task-table-head {
+    grid-template-columns: 1.5fr 5fr 2fr 0.8fr;
+  }
+
+  .user-table-head {
+    grid-template-columns: 3fr 7fr;
+  }
 }
 
-.task-list {
+.task-list,
+.user-list {
   display: grid;
-  grid-template-columns: 1.5fr 5fr 2fr 0.8fr;
   text-align: center;
   padding: 0.3rem;
   border-bottom: 1px solid #333;
+
   .hide-lg {
     display: none;
   }
+}
+
+.task-list {
+  grid-template-columns: 1.5fr 5fr 2fr 0.8fr;
+}
+
+.user-list {
+  grid-template-columns: 3fr 7fr;
 }
 
 .to-delete {

@@ -11,7 +11,8 @@ import TaskPage from './components/Pages/Tasks-page';
 import AddTaskPage from './components/Pages/Add-task-page';
 import EditTaskPage from './components/Pages/Edit-task-page';
 import TaskDetailPage from './components/Pages/Task-detail-page';
-import UserPage from './components/Pages/User-page';
+import UserInfoPage from './components/Pages/User-info-page';
+import UsersPage from './components/Pages/Users-page';
 import EditUserPage from './components/Pages/Edit-user-page';
 import SignPage from './components/Pages/Sign-page';
 
@@ -36,7 +37,8 @@ const App = ({ getUser }) => {
           <Route exact path='/task-add' component={AddTaskPage} />
           <Route exact path='/tasks/:task_id' component={TaskDetailPage} />
           <Route exact path='/task-edit/:task_id' component={EditTaskPage} />
-          <Route exact path='/userinfo' component={UserPage} />
+          <Route exact path='/users' component={UsersPage} />
+          <Route exact path='/userinfo' component={UserInfoPage} />
           <Route exact path='/userinfo-edit' component={EditUserPage} />
           <Route exact path='/sign' component={SignPage} />
         </Switch>

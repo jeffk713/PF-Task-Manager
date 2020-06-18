@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   isAuth: null,
   user: null,
   userLoading: true,
+  users: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -20,9 +21,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case USER.GET_USER_SUCCESS:
       return {
         ...state,
-        user: { ...payload },
+        user: payload.me,
         isAuth: true,
         userLoading: false,
+        users: payload.users,
       };
     case USER.SIGNIN_FAILURE:
     case USER.GET_USER_FAILURE:
@@ -36,6 +38,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         isAuth: false,
         user: null,
         userLoading: false,
+        users: null,
       };
     default:
       return { ...state };

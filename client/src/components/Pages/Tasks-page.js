@@ -36,7 +36,7 @@ const TasksPage = ({
           <i className='fas fa-check'></i> TASKS
         </h1>
         {isAuth && tasks.length > 0 && (
-          <div className='tasks-header-sort'>
+          <div>
             <p>Sorted by</p>
             <select name='sortBy' value={sortBy} onChange={handleChange}>
               <option value='all'>All</option>

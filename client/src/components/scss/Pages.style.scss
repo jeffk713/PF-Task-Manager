@@ -40,6 +40,26 @@
   cursor: pointer;
 }
 
+//USERS PAGE
+.user-table {
+  width: 80%;
+  margin: 1rem auto;
+
+  .user-table-head {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+
+    div {
+      border: 1px solid #333;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+    }
+  }
+}
+
 //USER & TASK DETAIL PAGE
 .user-body,
 .detail-body {

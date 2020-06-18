@@ -90,6 +90,24 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route         GET /user/all
+// @description   Get a user
+// @access        Private
+router.get('/all', auth, async (req, res) => {
+  try {
+    const me = await User.findById({ _id: req.user.id }).select('-password');
+    let users = await User.find().select('-password');
+
+    const indexToRemove = users.findIndex((user) => user._id.toString() === req.user.id);
+    users.splice(indexToRemove, 1);
+
+    res.json({ me, users });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // @route         PATCH /user
 // @description   Update a user
 // @access        Private

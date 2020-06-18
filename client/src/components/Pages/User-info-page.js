@@ -11,12 +11,12 @@ import { deleteUser } from '../../redux/actions/user-action';
 
 import '../scss/Pages.style.scss';
 
-const UserPage = ({ userState: { user, isAuth }, deleteAllTasks, deleteUser, history }) => {
+const UserInfoPage = ({ userState: { user, isAuth }, deleteAllTasks, deleteUser, history }) => {
   return (
     <Fragment>
       <div className='user-header'>
         <h1>
-          <i className='fas fa-user-cog'></i> USER INFORMATION
+          <i className='fas fa-user-cog'></i> MY INFORMATION
         </h1>
       </div>
 
@@ -66,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
   deleteUser: () => dispatch(deleteUser()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserPage));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserInfoPage));

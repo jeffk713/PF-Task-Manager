@@ -7,7 +7,8 @@ import { setAlert } from './alert-action';
 export const getUser = () => async (dispatch) => {
   if (localStorage.token) setupToken(localStorage.token);
   try {
-    const res = await axios.get('/user');
+    const res = await axios.get('/user/all');
+    console.log(res.data);
     dispatch({
       type: USER.GET_USER_SUCCESS,
       payload: res.data,

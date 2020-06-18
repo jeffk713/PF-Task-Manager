@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import { deleteTask } from '../../redux/actions/task-action';
 
-import '../scss/Task-list.style.scss';
+import '../scss/Task-User-list.style.scss';
 
 const TaskList = ({ _id, date, title, completed, history, match, deleteTask }) => {
   return (
@@ -20,7 +20,7 @@ const TaskList = ({ _id, date, title, completed, history, match, deleteTask }) =
       <div>
         {completed ? (
           <Fragment>
-            <i class='fas fa-check hide-lg'></i>
+            <i className='fas fa-check hide-lg'></i>
             <p className='hide-sm'>Completed</p>
           </Fragment>
         ) : (

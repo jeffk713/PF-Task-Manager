@@ -25,8 +25,13 @@ const Navbar = ({ isAuth, logOut }) => {
         <Link className='navbar-link sm' to='/tasks'>
           <strong>Tasks</strong>
         </Link>
+        {isAuth && (
+          <Link className='navbar-link sm' to='/users'>
+            <strong>Users</strong>
+          </Link>
+        )}
         <Link className='navbar-link sm' to='/userinfo'>
-          <strong>User</strong>
+          <strong>Me</strong>
         </Link>
         {isAuth ? (
           <div className='navbar-link sm' onClick={logOut}>
