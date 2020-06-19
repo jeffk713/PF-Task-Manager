@@ -11,6 +11,7 @@ app.use(express.json({ extended: false }));
 
 app.use('/user', require('./routes/user.route'));
 app.use('/task', require('./routes/task.route'));
+app.use('/profile', require('./routes/profile.route'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

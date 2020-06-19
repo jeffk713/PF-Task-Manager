@@ -96,7 +96,7 @@ router.get('/', auth, async (req, res) => {
 router.get('/all', auth, async (req, res) => {
   try {
     const me = await User.findById({ _id: req.user.id }).select('-password');
-    let users = await User.find().select('-password');
+    let users = await User.find().select('-password').sort({ name: 1 });
 
     const indexToRemove = users.findIndex((user) => user._id.toString() === req.user.id);
     users.splice(indexToRemove, 1);
