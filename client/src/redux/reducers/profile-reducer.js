@@ -10,11 +10,13 @@ const profileReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case PROFILE.GET_PROFILE_SUCCESS:
+    case PROFILE.UPLOAD_PROFILE_SUCCESS:
       return {
         ...state,
         profile: payload,
       };
     case PROFILE.GET_PROFILE_FAILURE:
+    case PROFILE.UPLOAD_PROFILE_FAILURE:
       return {
         ...state,
         error: payload,

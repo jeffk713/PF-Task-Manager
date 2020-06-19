@@ -1,16 +1,17 @@
 import React from 'react';
 import Moment from 'react-moment';
+import moment from 'moment';
 
 import UtilButton from '../Util-components/Util-button';
 
 import '../scss/Pages.style.scss';
 
-const UserProfileParts = ({ user, deleteAllTasks, deleteUser, history }) => {
+const UserProfileParts = ({ user, profile, deleteAllTasks, deleteUser, history }) => {
   return (
     <div className='user-body'>
       <div className='user-body-picture-container'>
         <div className='user-body-picture'>PROFILE PIC</div>
-        <div className='btn btn-lg bg-light' onClick={() => {}}>
+        <div className='btn btn-lg bg-light' onClick={() => history.push('/profile-edit')}>
           Edit profile
         </div>
       </div>
@@ -25,13 +26,14 @@ const UserProfileParts = ({ user, deleteAllTasks, deleteUser, history }) => {
           <strong>Email: </strong> {user.email}
         </div>
         <div className='user-body-table-group group-profile'>
-          <strong>Date of birth: </strong> <Moment format='MM/DD/YYYY'>12-06-1997</Moment>
+          <strong>Date of birth: </strong>{' '}
+          <Moment format='MM/DD/YYYY'>{moment.utc(profile.bday)}</Moment>
         </div>
         <div className='user-body-table-group group-profile'>
-          <strong>Occupation: </strong> developer
+          <strong>Occupation: </strong> {profile.occupation}
         </div>
         <div className='user-body-table-group group-profile'>
-          <strong>Introduction: </strong> hello, nice to meet you guys. how are you
+          <strong>Introduction: </strong> {profile.introduction}
         </div>
         <div className='user-body-table-group group-profile'>
           <strong>Last update: </strong>{' '}

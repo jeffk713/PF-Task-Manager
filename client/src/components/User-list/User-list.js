@@ -1,18 +1,17 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import '../scss/Task-User-list.style.scss';
 
-const UserList = ({ history, match, id, name }) => {
+const UserList = ({ history, match, id, name, email }) => {
   return (
     <div className='user-list'>
       <div className='to-detail' onClick={() => history.push(`${match.path}/${id}`)}>
         {name}
       </div>
-      <div>I am a soon-to-be developer</div>
+      <div>{email}</div>
     </div>
   );
 };
 
-export default connect()(withRouter(UserList));
+export default withRouter(UserList);

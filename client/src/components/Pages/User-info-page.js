@@ -33,6 +33,7 @@ const UserInfoPage = ({
       ) : profile ? (
         <UserProfileParts
           user={user}
+          profile={profile}
           deleteAllTasks={deleteAllTasks}
           deleteUser={deleteUser}
           history={history}

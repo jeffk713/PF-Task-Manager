@@ -28,7 +28,7 @@ const UserNoProfileParts = ({ user, deleteAllTasks, deleteUser, history }) => {
         </div>
         <div className='user-body-table-group'>You haven't set up profile</div>
         <div className='user-body-table-group'>
-          <div className='btn btn-lg bg-light' onClick={() => {}}>
+          <div className='btn btn-lg bg-light' onClick={() => history.push('/profile-edit')}>
             Set up profile
           </div>
           <div className='btn btn-lg bg-warning' onClick={() => deleteAllTasks()}>
