@@ -41,12 +41,27 @@ router.post(
   }
 );
 
+// @route         GET /profile/me
+// @description   Get my prfile
+// @access        Private
+router.get('/me', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ owner: req.user.id }).select('-avatar');
+    if (!profile) returnres.status(404).json({ error: [{ msg: 'Profile not found' }] });
+
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // @route         GET /profile
 // @description   Get a user prfile
 // @access        Private
 router.get('/:user_id', auth, async (req, res) => {
   try {
-    const profile = await Profile.find({ owner: req.params.user_id });
+    const profile = await Profile.findOne({ owner: req.params.user_id }).select('-avatar');
     if (!profile) returnres.status(404).json({ error: [{ msg: 'Profile not found' }] });
 
     res.json(profile);
@@ -63,7 +78,7 @@ router.delete('/', auth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user.id }).select('-password');
     if (!user) return res.status(404).json({ error: [{ msg: 'User not found' }] });
-    const profile = await Profile.findOne({ owner: req.user.id });
+    const profile = await Profile.findOne({ owner: req.user.id }).select('-avatar');
     if (!profile) return res.status(404).json({ error: [{ msg: 'Profile not found' }] });
 
     if (user._id.toString() === profile.owner.toString()) {
@@ -117,7 +132,7 @@ router.post('/avatar', auth, upload.single('avatar'), async (req, res) => {
 // @access        Public
 router.get('/avatar/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ owner: req.params.user_id });
+    const profile = await Profile.findOne({ owner: req.params.user_id }).select('-avatar');
     if (!profile) return res.json(undefined);
 
     res.set('Content-Type', 'image/png');

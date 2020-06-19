@@ -12,11 +12,7 @@ const INITIAL_STATE = {
   sortBy: 'all',
 };
 
-const TasksPage = ({
-  userState: { isAuth, userLoading },
-  taskState: { tasks, taskLoading },
-  getTasks,
-}) => {
+const TasksPage = ({ userState: { isAuth }, taskState: { tasks }, getTasks }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { sortBy } = formData;
 
