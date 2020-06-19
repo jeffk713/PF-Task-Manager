@@ -1,57 +1,49 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Moment from 'react-moment';
 
 import UtilPage from '../Util-components/Util-page';
-import UtilButton from '../Util-components/Util-button';
+import UserProfileParts from '../User-info-parts/User-profile';
+import UserNoProfileParts from '../User-info-parts/User-no-profile';
 
+import { getMyProfile } from '../../redux/actions/profile-action';
 import { deleteAllTasks } from '../../redux/actions/task-action';
 import { deleteUser } from '../../redux/actions/user-action';
 
 import '../scss/Pages.style.scss';
 
-const UserInfoPage = ({ userState: { user, isAuth }, deleteAllTasks, deleteUser, history }) => {
+const UserInfoPage = ({
+  userState: { user, isAuth },
+  profile,
+  deleteAllTasks,
+  deleteUser,
+  history,
+  getMyProfile,
+}) => {
+  useEffect(() => {
+    getMyProfile();
+  }, []);
   return (
     <Fragment>
-      <div className='user-header'>
-        <h1>
-          <i className='fas fa-user-cog'></i> MY INFORMATION
-        </h1>
-      </div>
-
-      {isAuth ? (
-        <div className='user-body'>
-          <div className='user-body-table'>
-            <div className='user-btn-group'>
-              <UtilButton purpose='edit' handleClick={() => history.push('/userinfo-edit')} />
-            </div>
-            <div className='user-body-table-group'>
-              <strong>Name: </strong> {user.name}
-            </div>
-            <div className='user-body-table-group'>
-              <strong>Eamil: </strong> {user.email}
-            </div>
-            <div className='user-body-table-group'>
-              <strong>Last update: </strong>{' '}
-              <Moment format='MM/DD/YYYY'>{user.updatedAt.toString()}</Moment>
-            </div>
-            <div className='user-body-table-group'>
-              <strong>Joined since: </strong>{' '}
-              <Moment format='MM/DD/YYYY'>{user.createdAt.toString()}</Moment>
-            </div>
-            <div className='user-body-table-group'>
-              <div className='btn btn-lg bg-warning' onClick={() => deleteAllTasks()}>
-                Delete All Tasks
-              </div>
-              <div className='btn btn-lg bg-warning' onClick={() => deleteUser()}>
-                Delete User
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : (
+      <h1>
+        <i className='fas fa-user-cog'></i> MY INFORMATION
+      </h1>
+      {!isAuth ? (
         <UtilPage purpose='guest' />
+      ) : profile ? (
+        <UserProfileParts
+          user={user}
+          deleteAllTasks={deleteAllTasks}
+          deleteUser={deleteUser}
+          history={history}
+        />
+      ) : (
+        <UserNoProfileParts
+          user={user}
+          deleteAllTasks={deleteAllTasks}
+          deleteUser={deleteUser}
+          history={history}
+        />
       )}
     </Fragment>
   );
@@ -59,11 +51,13 @@ const UserInfoPage = ({ userState: { user, isAuth }, deleteAllTasks, deleteUser,
 
 const mapStateToProps = (state) => ({
   userState: state.userReducer,
+  profile: state.profileReducer.profile,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   deleteAllTasks: () => dispatch(deleteAllTasks()),
   deleteUser: () => dispatch(deleteUser()),
+  getMyProfile: () => dispatch(getMyProfile()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserInfoPage));

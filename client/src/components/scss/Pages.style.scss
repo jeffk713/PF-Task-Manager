@@ -60,11 +60,14 @@
   }
 }
 
-//USER & TASK DETAIL PAGE
+//USERINFO & TASK DETAIL PAGE
 .user-body,
 .detail-body {
   margin: 2rem auto;
-
+  display: flex;
+  .user-body-picture {
+    margin-right: 0.5rem;
+  }
   .user-body-table {
     display: flex;
     flex-direction: column;
@@ -79,12 +82,25 @@
       margin-bottom: 0.5rem;
       font-size: 1.2rem;
     }
+    .group-profile {
+      width: 250px;
+    }
 
     .user-btn-group {
       display: flex;
       flex-direction: row-reverse;
       margin-bottom: -0.5rem;
     }
+  }
+  .table-profile {
+    margin-top: -2rem;
+  }
+
+  .user-body-picture {
+    height: 250px;
+    width: 250px;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
   }
 }
 
