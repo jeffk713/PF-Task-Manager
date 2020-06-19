@@ -16,7 +16,7 @@ const UsersPage = ({ isAuth, users }) => {
       <div className='user-table'>
         <div className='user-table-head'>
           <div>Username</div>
-          <div>Introduction</div>
+          <div>Email</div>
         </div>
         {users.length > 0 ? (
           users.map(({ _id, ...others }) => <UserList key={_id} id={_id} {...others} />)

@@ -14,6 +14,7 @@ import TaskDetailPage from './components/Pages/Task-detail-page';
 import UserInfoPage from './components/Pages/User-info-page';
 import UsersPage from './components/Pages/Users-page';
 import EditUserPage from './components/Pages/Edit-user-page';
+import UploadProfilePage from './components/Pages/Upload-profile-page';
 import SignPage from './components/Pages/Sign-page';
 
 import { getUser } from './redux/actions/user-action';
@@ -40,6 +41,7 @@ const App = ({ getUser }) => {
           <Route exact path='/users' component={UsersPage} />
           <Route exact path='/userinfo' component={UserInfoPage} />
           <Route exact path='/userinfo-edit' component={EditUserPage} />
+          <Route exact path='/profile-edit' component={UploadProfilePage} />
           <Route exact path='/sign' component={SignPage} />
         </Switch>
       </PageContainer>
