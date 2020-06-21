@@ -32,7 +32,7 @@ const TasksPage = ({ userState: { isAuth }, taskState: { tasks }, getTasks }) =>
           <i className='fas fa-check'></i> TASKS
         </h1>
         {isAuth && tasks.length > 0 && (
-          <div>
+          <div className='tasks-header-sort'>
             <p>Sorted by</p>
             <select name='sortBy' value={sortBy} onChange={handleChange}>
               <option value='all'>All</option>

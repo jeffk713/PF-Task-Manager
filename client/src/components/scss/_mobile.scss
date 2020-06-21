@@ -54,8 +54,18 @@
     display: block;
     .navbar-group {
       justify-content: space-evenly;
+      margin: 0 auto;
       h1 {
         font-size: 1.3rem;
+      }
+
+      .navbar-link {
+        .hide-sm {
+          display: none;
+        }
+        .hide-lg {
+          display: inline;
+        }
       }
     }
   }
@@ -121,5 +131,24 @@
   }
   .sign-body {
     flex-direction: column;
+  }
+
+  .chat-container {
+    width: 95%;
+
+    .message-console {
+      .message-btn {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .user-body-profile {
+    display: flex;
+    flex-direction: column;
+
+    .table-profile {
+      margin-top: 1rem;
+    }
   }
 }

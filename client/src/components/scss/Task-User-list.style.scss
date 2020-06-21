@@ -52,4 +52,25 @@
   cursor: pointer;
 }
 
+.message-box {
+  .message {
+    display: flex;
+
+    & strong {
+      flex: 0 0 0;
+      margin-right: 0.5rem;
+      align-self: flex-start;
+    }
+
+    & p {
+      flex: 1 1 0;
+    }
+  }
+  .message-time {
+    margin-top: -0.4rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
 @import 'mobile';

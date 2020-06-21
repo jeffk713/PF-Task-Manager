@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import UtilPage from '../Util-components/Util-page';
 
 const HomePage = ({ isAuth }) => {
-  console.log(isAuth);
   return (
     <div className='home'>
       {isAuth ? (

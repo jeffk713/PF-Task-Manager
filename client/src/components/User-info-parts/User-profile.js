@@ -8,7 +8,7 @@ import '../scss/Pages.style.scss';
 
 const UserProfileParts = ({ user, profile, deleteAllTasks, deleteUser, history }) => {
   return (
-    <div className='user-body'>
+    <div className='user-body user-body-profile'>
       <div className='user-body-picture-container'>
         <div className='user-body-picture'>PROFILE PIC</div>
         <div className='btn btn-lg bg-light' onClick={() => history.push('/profile-edit')}>

@@ -91,7 +91,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // @route         GET /user/all
-// @description   Get a user
+// @description   Get all user
 // @access        Private
 router.get('/all', auth, async (req, res) => {
   try {
