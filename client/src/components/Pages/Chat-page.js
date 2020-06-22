@@ -89,7 +89,7 @@ const ChatPage = ({ isAuth }) => {
               placeholder='Say something'
               rows='2'
               onKeyDown={(event) => {
-                if (event.keyCode == 13) sendMessage(event);
+                if (event.keyCode === 13) sendMessage(event);
               }}
             />
           </div>

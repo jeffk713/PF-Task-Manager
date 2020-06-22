@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Moment from 'react-moment';
 import moment from 'moment';
 
@@ -7,14 +7,18 @@ import UtilButton from '../Util-components/Util-button';
 import '../scss/Pages.style.scss';
 
 const UserProfileParts = ({ user, profile, deleteAllTasks, deleteUser, history }) => {
+  useEffect(() => {}, []);
+
   return (
     <div className='user-body user-body-profile'>
+      {/*
       <div className='user-body-picture-container'>
-        <div className='user-body-picture'>PROFILE PIC</div>
-        <div className='btn btn-lg bg-light' onClick={() => history.push('/profile-edit')}>
-          Edit profile
-        </div>
+      <div className='user-body-picture'>PROFILE PIC</div>
+      <div className='btn btn-lg bg-light' onClick={() => history.push('/profile-edit')}>
+      Edit profile
       </div>
+      </div>
+      */}
       <div className='user-body-table table-profile'>
         <div className='user-btn-group'>
           <UtilButton purpose='edit' handleClick={() => history.push('/userinfo-edit')} />
@@ -44,6 +48,9 @@ const UserProfileParts = ({ user, profile, deleteAllTasks, deleteUser, history }
           <Moment format='MM/DD/YYYY'>{user.createdAt.toString()}</Moment>
         </div>
         <div className='user-body-table-group group-profile'>
+          <div className='btn btn-lg bg-light' onClick={() => history.push('/profile-edit')}>
+            Edit profile
+          </div>
           <div className='btn btn-lg bg-warning' onClick={() => deleteAllTasks()}>
             Delete All Tasks
           </div>

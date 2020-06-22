@@ -4,17 +4,18 @@ import moment from 'moment';
 
 import UtilButton from '../Util-components/Util-button';
 
-import { uploadProfile } from '../../redux/actions/profile-action';
+import { uploadProfile, uploadPicture } from '../../redux/actions/profile-action';
 
 const INITIAL_STATE = {
   bday: '',
   occupation: '',
   introduction: '',
+  picture: undefined,
 };
 
-const UploadProfilePage = ({ profile, uploadProfile, history }) => {
+const UploadProfilePage = ({ profile, uploadProfile, uploadPicture, history }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
-  const { bday, occupation, introduction } = formData;
+  const { bday, occupation, introduction, picture } = formData;
 
   useEffect(() => {
     profile && setFormData({ ...profile, bday: moment.utc(profile.bday).format('MM/DD/YYYY') });
@@ -28,6 +29,8 @@ const UploadProfilePage = ({ profile, uploadProfile, history }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     uploadProfile({ bday, occupation, introduction });
+    // if (picture) uploadPicture(picture);
+    console.log(picture);
     setFormData({ ...INITIAL_STATE });
     history.push('/userinfo');
   };
@@ -70,6 +73,17 @@ const UploadProfilePage = ({ profile, uploadProfile, history }) => {
             rows='4'
           />
         </div>
+        {/**
+          <div className='form-group'>
+          <input
+          className='form-input bg-light'
+          name='picture'
+          type='file'
+          value={picture}
+          onChange={handleChange}
+          />
+          </div>
+        */}
         <div className='form-group'>
           <div className='btn bg-main btn-lg' onClick={handleSubmit}>
             SAVE PROFILE
@@ -87,6 +101,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   uploadProfile: ({ bday, occupation, introduction }) =>
     dispatch(uploadProfile({ bday, occupation, introduction })),
+  uploadPicture: (picture) => dispatch(uploadPicture(picture)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadProfilePage);
