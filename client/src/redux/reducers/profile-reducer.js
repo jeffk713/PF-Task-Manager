@@ -2,7 +2,7 @@ import { PROFILE } from '../actions/action-types';
 
 const INITIAL_STATE = {
   profile: null,
-  avatar: false,
+  avatar: null,
   error: null,
 };
 
@@ -25,12 +25,12 @@ const profileReducer = (state = INITIAL_STATE, action) => {
     case PROFILE.UPLOAD_PICTURE_SUCCESS:
       return {
         ...state,
-        avatar: true,
+        avatar: payload,
       };
     case PROFILE.UPLOAD_PICTURE_FAILURE:
       return {
         ...state,
-        avatar: false,
+        avatar: null,
         error: payload,
       };
     default:

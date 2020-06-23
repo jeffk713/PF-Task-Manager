@@ -55,7 +55,7 @@ export const uploadPicture = (picture) => async (dispatch) => {
   if (localStorage.token) setupToken(localStorage.token);
 
   const formData = new FormData();
-  formData.append('avatar', picture);
+  formData.append('avatar', picture, picture.name);
 
   const config = {
     headers: {
@@ -63,9 +63,29 @@ export const uploadPicture = (picture) => async (dispatch) => {
     },
   };
   try {
-    await axios.post('/profile/avatar', formData, config);
+    const res = await axios.post('/profile/avatar', formData, config);
     dispatch({
       type: PROFILE.UPLOAD_PICTURE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const error = err.response.data.error;
+    if (error) error.forEach((err) => dispatch(setAlert(err.msg, 'red')));
+
+    dispatch({
+      type: PROFILE.UPLOAD_PICTURE_FAILURE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getPicture = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/profile/avatar/${userId}`);
+
+    dispatch({
+      type: PROFILE.UPLOAD_PICTURE_SUCCESS,
+      payload: res.data,
     });
   } catch (err) {
     const error = err.response.data.error;

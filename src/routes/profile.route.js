@@ -120,7 +120,7 @@ router.post('/avatar', auth, upload.single('avatar'), async (req, res) => {
 
     profile.avatar = sharpBuffer;
     await profile.save();
-    res.send();
+    res.send(profile.avatar);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -132,7 +132,7 @@ router.post('/avatar', auth, upload.single('avatar'), async (req, res) => {
 // @access        Public
 router.get('/avatar/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ owner: req.params.user_id }).select('-avatar');
+    const profile = await Profile.findOne({ owner: req.params.user_id });
     if (!profile) return res.json(undefined);
 
     res.set('Content-Type', 'image/png');

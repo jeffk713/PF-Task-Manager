@@ -10,28 +10,38 @@ const INITIAL_STATE = {
   bday: '',
   occupation: '',
   introduction: '',
-  picture: undefined,
+};
+const INITIAL_PICTURE = {
+  picture: null,
 };
 
 const UploadProfilePage = ({ profile, uploadProfile, uploadPicture, history }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
-  const { bday, occupation, introduction, picture } = formData;
+  const [pictureData, setPictureData] = useState(INITIAL_PICTURE);
+  const { bday, occupation, introduction } = formData;
+  const { picture } = pictureData;
 
   useEffect(() => {
     profile && setFormData({ ...profile, bday: moment.utc(profile.bday).format('MM/DD/YYYY') });
   }, []);
 
   const handleChange = (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (event) => {
+    setPictureData({ picture: event.target.files[0] });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     uploadProfile({ bday, occupation, introduction });
-    // if (picture) uploadPicture(picture);
+    if (picture) uploadPicture(picture);
     console.log(picture);
     setFormData({ ...INITIAL_STATE });
+    setPictureData({ ...INITIAL_PICTURE });
     history.push('/userinfo');
   };
 
@@ -73,17 +83,9 @@ const UploadProfilePage = ({ profile, uploadProfile, uploadPicture, history }) =
             rows='4'
           />
         </div>
-        {/**
-          <div className='form-group'>
-          <input
-          className='form-input bg-light'
-          name='picture'
-          type='file'
-          value={picture}
-          onChange={handleChange}
-          />
-          </div>
-        */}
+        <div className='form-group'>
+          <input className='form-input bg-light' type='file' onChange={handleFileChange} />
+        </div>
         <div className='form-group'>
           <div className='btn bg-main btn-lg' onClick={handleSubmit}>
             SAVE PROFILE
