@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Alert from './components/Alert/Alert';
 import PageContainer from './components/Page-container/Page-container';
 import Spinner from './components/Spinner/Spinner';
+import ErrorBoundary from './components/Error-boundary/Error-boundary';
 
 import { getUser } from './redux/actions/user-action';
 import setupToken from './utilities/setup-token';
@@ -36,19 +37,21 @@ const App = ({ getUser }) => {
       <PageContainer>
         <Alert />
         <Switch>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={Homepage} />
-            <Route exact path='/tasks' component={TaskPage} />
-            <Route exact path='/task-add' component={AddTaskPage} />
-            <Route exact path='/tasks/:task_id' component={TaskDetailPage} />
-            <Route exact path='/task-edit/:task_id' component={EditTaskPage} />
-            <Route exact path='/users' component={UsersPage} />
-            <Route exact path='/userinfo' component={UserInfoPage} />
-            <Route exact path='/userinfo-edit' component={EditUserPage} />
-            <Route exact path='/profile-edit' component={UploadProfilePage} />
-            <Route path='/chat' component={ChatPage} />
-            <Route exact path='/sign' component={SignPage} />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Route exact path='/' component={Homepage} />
+              <Route exact path='/tasks' component={TaskPage} />
+              <Route exact path='/task-add' component={AddTaskPage} />
+              <Route exact path='/tasks/:task_id' component={TaskDetailPage} />
+              <Route exact path='/task-edit/:task_id' component={EditTaskPage} />
+              <Route exact path='/users' component={UsersPage} />
+              <Route exact path='/userinfo' component={UserInfoPage} />
+              <Route exact path='/userinfo-edit' component={EditUserPage} />
+              <Route exact path='/profile-edit' component={UploadProfilePage} />
+              <Route path='/chat' component={ChatPage} />
+              <Route exact path='/sign' component={SignPage} />
+            </Suspense>
+          </ErrorBoundary>
         </Switch>
       </PageContainer>
     </Fragment>

@@ -44,7 +44,6 @@ const UploadProfilePage = ({ profile, uploadProfile, uploadPicture, history }) =
     setPictureData({ ...INITIAL_PICTURE });
     history.push('/userinfo');
   };
-
   return (
     <Fragment>
       <h1>
