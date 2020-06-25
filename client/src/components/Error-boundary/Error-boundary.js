@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class ErrorBoundary extends Component {
   state = {
@@ -15,7 +15,14 @@ class ErrorBoundary extends Component {
 
   render() {
     const { hasErrored } = this.state;
-    if (hasErrored) return <div>Something went wrong.</div>;
+    if (hasErrored) {
+      return (
+        <Fragment>
+          <img className='error-page' src={'https://i.imgur.com/yW2W9SC.png'} />
+          <p className='error-message'>Something went wrong.</p>
+        </Fragment>
+      );
+    }
 
     return this.props.children;
   }

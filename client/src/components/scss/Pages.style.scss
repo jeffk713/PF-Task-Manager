@@ -213,4 +213,15 @@
     }
   }
 }
+
+// ERROR BOUNDARY
+.error-page {
+  width: 50%;
+  margin: auto;
+}
+.error-message {
+  margin: auto;
+  font-size: 1.2rem;
+}
+
 @import 'mobile';
