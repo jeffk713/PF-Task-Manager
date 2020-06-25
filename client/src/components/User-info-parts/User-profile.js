@@ -20,7 +20,7 @@ const UserProfileParts = ({ user, profile, deleteAllTasks, deleteUser, history }
         </div>
       </div>
       <div className='user-body-table table-profile'>
-        <div className='user-btn-group'>
+        <div className='user-btn-group group-profile'>
           <UtilButton purpose='edit' handleClick={() => history.push('/userinfo-edit')} />
         </div>
         <div className='user-body-table-group group-profile'>

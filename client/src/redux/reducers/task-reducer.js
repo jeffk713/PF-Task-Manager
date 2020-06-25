@@ -23,6 +23,11 @@ const taskReducer = (state = INITIAL_STATE, action) => {
         taskLoading: false,
         error: payload,
       };
+    case TASK.GET_TASKS_START:
+      return {
+        ...state,
+        taskLoading: true,
+      };
     default:
       return state;
   }

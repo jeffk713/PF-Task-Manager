@@ -1,28 +1,30 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
 import Alert from './components/Alert/Alert';
 import PageContainer from './components/Page-container/Page-container';
-
-import HomePage from './components/Pages/Home-page';
-import TaskPage from './components/Pages/Tasks-page';
-import AddTaskPage from './components/Pages/Add-task-page';
-import EditTaskPage from './components/Pages/Edit-task-page';
-import TaskDetailPage from './components/Pages/Task-detail-page';
-import UserInfoPage from './components/Pages/User-info-page';
-import UsersPage from './components/Pages/Users-page';
-import EditUserPage from './components/Pages/Edit-user-page';
-import UploadProfilePage from './components/Pages/Upload-profile-page';
-import ChatPage from './components/Pages/Chat-page';
-import SignPage from './components/Pages/Sign-page';
+import Spinner from './components/Spinner/Spinner';
 
 import { getUser } from './redux/actions/user-action';
 import setupToken from './utilities/setup-token';
 
 import './App.scss';
+
 if (localStorage.token) setupToken(localStorage.token);
+
+const Homepage = lazy(() => import('./components/Pages/Home-page'));
+const TaskPage = lazy(() => import('./components/Pages/Tasks-page'));
+const AddTaskPage = lazy(() => import('./components/Pages/Add-task-page'));
+const EditTaskPage = lazy(() => import('./components/Pages/Edit-task-page'));
+const TaskDetailPage = lazy(() => import('./components/Pages/Task-detail-page'));
+const UserInfoPage = lazy(() => import('./components/Pages/User-info-page'));
+const UsersPage = lazy(() => import('./components/Pages/Users-page'));
+const EditUserPage = lazy(() => import('./components/Pages/Edit-user-page'));
+const UploadProfilePage = lazy(() => import('./components/Pages/Upload-profile-page'));
+const ChatPage = lazy(() => import('./components/Pages/Chat-page'));
+const SignPage = lazy(() => import('./components/Pages/Sign-page'));
 
 const App = ({ getUser }) => {
   useEffect(() => {
@@ -34,17 +36,19 @@ const App = ({ getUser }) => {
       <PageContainer>
         <Alert />
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/tasks' component={TaskPage} />
-          <Route exact path='/task-add' component={AddTaskPage} />
-          <Route exact path='/tasks/:task_id' component={TaskDetailPage} />
-          <Route exact path='/task-edit/:task_id' component={EditTaskPage} />
-          <Route exact path='/users' component={UsersPage} />
-          <Route exact path='/userinfo' component={UserInfoPage} />
-          <Route exact path='/userinfo-edit' component={EditUserPage} />
-          <Route exact path='/profile-edit' component={UploadProfilePage} />
-          <Route path='/chat' component={ChatPage} />
-          <Route exact path='/sign' component={SignPage} />
+          <Suspense fallback={<Spinner />}>
+            <Route exact path='/' component={Homepage} />
+            <Route exact path='/tasks' component={TaskPage} />
+            <Route exact path='/task-add' component={AddTaskPage} />
+            <Route exact path='/tasks/:task_id' component={TaskDetailPage} />
+            <Route exact path='/task-edit/:task_id' component={EditTaskPage} />
+            <Route exact path='/users' component={UsersPage} />
+            <Route exact path='/userinfo' component={UserInfoPage} />
+            <Route exact path='/userinfo-edit' component={EditUserPage} />
+            <Route exact path='/profile-edit' component={UploadProfilePage} />
+            <Route path='/chat' component={ChatPage} />
+            <Route exact path='/sign' component={SignPage} />
+          </Suspense>
         </Switch>
       </PageContainer>
     </Fragment>

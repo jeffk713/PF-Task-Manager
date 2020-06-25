@@ -28,6 +28,13 @@ export const getTasks = (sortBy = undefined) => async (dispatch) => {
   }
 };
 
+export const getTasksStart = () => (dispatch) => {
+  dispatch({
+    type: TASK.GET_TASKS_START,
+  });
+  dispatch(getTasks());
+};
+
 export const createTask = ({ date, title, detail, completed }) => async (dispatch) => {
   if (localStorage.token) setupToken(localStorage.token);
   const config = {
