@@ -3,6 +3,7 @@ const connectDB = require('../config/db');
 const socketio = require('socket.io');
 const path = require('path');
 const http = require('http');
+const compression = require('compression');
 
 const { addUser, removeUser, getUser, getUserInRoom } = require('./utilities/chat-user');
 const { formatMessage } = require('./utilities/chat-message');
@@ -14,6 +15,7 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 
+app.use(compression());
 app.use(express.json({ extended: false }));
 
 app.use('/user', require('./routes/user.route'));
